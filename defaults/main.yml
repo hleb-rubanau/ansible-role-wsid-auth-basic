@@ -1,0 +1,6 @@
+---
+wsid_auth_docker_src_dir: /usr/src/wsid-auth
+wsid_auth_docker_src_repo: https://github.com/hleb-rubanau/wsid-basic-authenticator-docker.git
+wsid_auth_docker_image: wsid-auth
+wsid_auth_installation_dir: /opt/wsid_auth
+wsid_auth_port: 8001
