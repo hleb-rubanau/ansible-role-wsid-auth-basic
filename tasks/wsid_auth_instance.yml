@@ -1,0 +1,19 @@
+---
+- file:
+    state: directory
+    path: "{{ item }}"
+  loop:
+    - "{{ auth_app.installation_dir }}"
+    - "{{ auth_app.settings_dir }}"
+- template: 
+    src: docker-compose.yml
+    dest: "{{ auth_app.installation_dir }}/docker-compose.yml"
+- lineinfile:
+    line: "COMPOSE_PROJECT_NAME={{ auth_app.name }}"
+    dest: "{{ auth_app.installation_dir }}/.env"
+- set_fact:
+    wsid_auth_logging_options_inline: "tag: \"{{ auth_app.name }}\" "
+  when: (wsid_auth_logging_options_inline is defined) and wsid_auth_logging_options_inline
+- docker_compose:
+    project_src: "{{ auth_app.installation_dir }}"
+    project_name: "{{ auth_app.name }}"

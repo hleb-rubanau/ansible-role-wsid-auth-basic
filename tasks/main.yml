@@ -1,0 +1,20 @@
+---
+- apt:
+    name:
+      - git 
+      - python-docker
+      - docker-compose
+- git:
+    depth: 1
+    repo: "{{ wsid_auth_docker_src_repo }}"
+    dest: "{{ wsid_auth_docker_src_dir }}"
+- docker_image:
+    name: "{{ wsid_auth_docker_image }}"
+    tag:  "{{ wsid_auth_docker_image_tag }}"
+    build:
+      path: "{{ wsid_auth_docker_src_dir }}"
+- include: wsid_auth_instance.yml
+  loop: "{{ wsid_auth_instances }}"
+  loop_control:
+    label: "{{ item.name }}"
+    loop_var: "{{ auth_app }}"
