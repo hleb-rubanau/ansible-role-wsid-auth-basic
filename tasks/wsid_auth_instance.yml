@@ -11,6 +11,7 @@
 - lineinfile:
     line: "COMPOSE_PROJECT_NAME={{ auth_app.name }}"
     dest: "{{ auth_app.installation_dir }}/.env"
+    create: yes
 - set_fact:
     wsid_auth_logging_options_inline: "tag: \"{{ auth_app.name }}\" "
   when: (wsid_auth_logging_options_inline is defined) and wsid_auth_logging_options_inline
