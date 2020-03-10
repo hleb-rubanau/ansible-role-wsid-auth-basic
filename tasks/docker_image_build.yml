@@ -1,0 +1,5 @@
+---
+- docker_image:
+    name: "{{ wsid_auth_docker_image }}:{{ wsid_auth_docker_image_tag }}"
+    build:
+      path: "{{ wsid_auth_docker_src_dir }}"
