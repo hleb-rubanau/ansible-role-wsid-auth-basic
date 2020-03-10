@@ -1,6 +1,6 @@
 ---
 version: "3.2"
-service:
+services:
   auth: 
     image: {{ wsid_auth_docker_image }}:{{ wsid_auth_docker_image_tag }}
     restart: unless-stopped
@@ -8,6 +8,8 @@ service:
       - 127.0.0.1:{{ auth_app.port }}:8000
     volumes: 
       - {{ auth_app.settings_dir }}:/settings:ro
-{% if wsid_auth_logging_options_inline is defined %}
+{% if wsid_auth_logging_options_inline_override is defined %}
+    logging: { options: { {{ wsid_auth_logging_options_inline_override }}  } }
+{% elif wsid_auth_logging_options_inline is defined %}
     logging: { options: { {{ wsid_auth_logging_options_inline }}  } }
 {% endif %}
