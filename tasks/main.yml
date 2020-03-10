@@ -15,5 +15,5 @@
 - include_tasks: "{{ role_path }}/tasks/wsid_auth_instance.yml"
   loop: "{{ wsid_auth_instances }}"
   loop_control:
-    label: "{{ item.name }}"
     loop_var: auth_app
+    label: "auth_app:{{ auth_app.name }}"
