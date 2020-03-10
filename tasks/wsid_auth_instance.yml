@@ -17,3 +17,8 @@
 - docker_compose:
     project_src: "{{ auth_app.installation_dir }}"
     project_name: "{{ auth_app.name }}"
+  when: ansible_version.full | version('2.8','>=') 
+- docker_service:
+    project_src: "{{ auth_app.installation_dir }}"
+    project_name: "{{ auth_app.name }}"
+  when: ansible_version.full | version('2.8','<') 
