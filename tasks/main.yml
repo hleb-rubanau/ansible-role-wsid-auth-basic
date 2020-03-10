@@ -8,11 +8,11 @@
     depth: 1
     repo: "{{ wsid_auth_docker_src_repo }}"
     dest: "{{ wsid_auth_docker_src_dir }}"
-- include: docker_image_build.yml
+- include_tasks: "{{ role_path }}/tasks/docker_image_build.yml"
   when: ansible_version.full is version('2.8','>=') 
-- include: docker_image_build_oldformat.yml
+- include_tasks: "{{ role_path }}/tasks/docker_image_build_oldformat.yml"
   when: ansible_version.full is version('2.8','<') 
-- include: wsid_auth_instance.yml
+- include_tasks: "{{ role_path }}/tasks/wsid_auth_instance.yml"
   loop: "{{ wsid_auth_instances }}"
   loop_control:
     label: "{{ item.name }}"
