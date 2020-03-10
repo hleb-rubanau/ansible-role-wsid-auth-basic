@@ -1,0 +1,5 @@
+---
+- docker_service:
+    project_src: "{{ auth_app.installation_dir }}"
+    project_name: "{{ auth_app.name }}"
+    remove_orphans: yes
