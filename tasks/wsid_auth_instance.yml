@@ -5,6 +5,9 @@
   loop:
     - "{{ auth_app.installation_dir }}"
     - "{{ auth_app.settings_dir }}"
+- set_fact:
+    wsid_auth_logging_options_inline_override: "tag: \"{{ auth_app.name }}\" "
+  when: (wsid_auth_logging_options_inline is defined) and wsid_auth_logging_options_inline
 - template: 
     src: docker-compose.yml
     dest: "{{ auth_app.installation_dir }}/docker-compose.yml"
@@ -12,9 +15,6 @@
     line: "COMPOSE_PROJECT_NAME={{ auth_app.name }}"
     dest: "{{ auth_app.installation_dir }}/.env"
     create: yes
-- set_fact:
-    wsid_auth_logging_options_inline_override: "tag: \"{{ auth_app.name }}\" "
-  when: (wsid_auth_logging_options_inline is defined) and wsid_auth_logging_options_inline
 - include_tasks: "{{ role_path }}/tasks/docker_compose.yml"
   when: ansible_version.full is version('2.8','>=') 
 - include_tasks: "{{ role_path }}/tasks/docker_service.yml"
