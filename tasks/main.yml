@@ -8,6 +8,7 @@
     depth: 1
     repo: "{{ wsid_auth_docker_src_repo }}"
     dest: "{{ wsid_auth_docker_src_dir }}"
+    version: "{{ wsid_auth_docker_src_version }}"
 - include_tasks: "{{ role_path }}/tasks/docker_image_build.yml"
   when: ansible_version.full is version('2.8','>=') 
 - include_tasks: "{{ role_path }}/tasks/docker_image_build_oldformat.yml"
