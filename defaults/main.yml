@@ -1,7 +1,7 @@
 ---
 wsid_auth_docker_src_dir: /usr/src/wsid-auth
 wsid_auth_docker_src_repo: https://github.com/hleb-rubanau/wsid-basic-authenticator-docker.git
-wsid_auth_docker_src_version: v0.0.2
+wsid_auth_docker_src_version: v0.1
 wsid_auth_docker_image: wsid-auth
 wsid_auth_docker_image_tag: local
 wsid_auth_docker_whitelist_config_filename: identification_whitelist.conf
